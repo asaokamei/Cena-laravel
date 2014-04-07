@@ -47,7 +47,8 @@
     <!-- Example row of columns -->
     <div class="row">
         <div class="container">
-            <h1>You have arrived... to Cena/Laravel demo.</h1>
+
+            @yield('content')
         </div>
     </div>
 </div>
