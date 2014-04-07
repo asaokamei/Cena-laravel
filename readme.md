@@ -2,8 +2,8 @@ Cena-laravel
 ------------
 
 This repository demonstrates Cena technology on 
-Eloquent ORM from (https://github.com/laravel/laravel)[Laravel Framework]. 
+Eloquent ORM from [Laravel Framework](https://github.com/laravel/laravel "Laravel github repository"). 
 
-See (https://github.com/asaokamei/Cena.Cena)[Cena.Cena] 
+See [Cena.Cena](https://github.com/asaokamei/Cena.Cena "Cena github repository") 
 for details about Cena technology. 
 
