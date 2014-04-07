@@ -1,0 +1,80 @@
+*, *.before, *.after {
+    box-sizing: border-box;
+}
+body {
+    font-size: 16px;
+    padding: 60px 0 0 0;
+}
+footer {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid gray;
+    color: gray;
+}
+/*
+ * header style. 
+ */
+
+
+/*
+ * post style
+ */
+div.post h1 {
+    border-left: 12px solid darkblue;
+    margin-left: -16px;
+    padding-left: 4px;
+}
+div.post span.date {
+    color: #993300;
+    font-size: 16px;
+    font-weight: normal;
+    display: block;
+}
+
+/*
+ * comment style
+ */
+div.comments {
+    margin-top: 10px;
+    padding: 0 20px 20px 20px;
+    border: 4px solid #e0e0e0;
+    border-radius: 5px;
+}
+div.comments h2 {
+    border-left: 8px solid darkblue;
+    margin-left: -12px;
+    padding-left: 4px;
+}
+button.editPost {
+}
+input, textarea {
+    width: 100%;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-size: 0.9em;
+}
+div.comments span.date {
+    color: #993300;
+    font-size: 14px;
+    font-weight: normal;
+    display: block;
+}
+
+span.error-msg {
+    color: #cc0000;
+    font-weight: bold;
+}
+span.error-msg:before {
+    content: "*";
+    color: red;
+}
+dt {
+    margin-top:    1em ;
+    margin-bottom: 0.5em;
+}
+dd {
+    margin-left: 2em ;
+}
+label {
+    margin-right: 1em;
+}
