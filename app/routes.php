@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::pattern( 'id', '[0-9]+' );
+
+Route::get('/', 'PostController@listPost' );
+
+Route::get('/{id}', 'PostController@onGet' );
