@@ -14,6 +14,8 @@ class Comment extends Eloquent
      */
     protected $table = 'comment';
 
+    protected $primaryKey = 'comment_id';
+
     /**
      * @return BelongsTo
      */
