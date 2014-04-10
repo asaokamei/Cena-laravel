@@ -29,12 +29,10 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <a class="navbar-brand" href="/" title="Cena/Laravel Demo">
-            Cena/Laravel Demo
-        </a>
+        {{ link_to( '/', 'Cena/Laravel Demo', ['class'=>'navbar-brand' ] ) }}
         <div class="navbar-collapse collapse pull-right">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
+                <li class="active">{{ link_to( '/', 'Home' ) }}</li>
                 <li><a href="edit.php">New Post</a></li>
                 <li><a href="about.php">About</a></li>
             </ul>
