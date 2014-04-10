@@ -18,7 +18,10 @@
     <div class="col-md-4">
 
         <h2>{{ link_to( '/'.$post->post_id, $post->title ) }}</h2>
-        <span class="date">{{ $post->publishAt }}</span>
+        <span class="date">
+            [{{ $post->publishAt }}]
+            [# of comments:{{ $post->count_comments}}]
+            [{{ $post->tags_list }}]</span>
         <span>{{ $post->content }}</span>
     </div>
 

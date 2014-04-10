@@ -4,7 +4,7 @@ class PostController extends BaseController {
 
     public function listPost()
     {
-        $posts = Post::all();
+        $posts = PostView::all();
         return View::make('post-index')->with( 'posts', $posts );
     }
 
