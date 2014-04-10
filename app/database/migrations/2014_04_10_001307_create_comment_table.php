@@ -3,10 +3,10 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTable extends Migration
+class CreateCommentTable extends Migration
 {
 
-    protected $table = 'post';
+    protected $table = 'comment';
 
     /**
      * Run the migrations.
@@ -17,11 +17,10 @@ class CreatePostTable extends Migration
     {
         Schema::create( $this->table, function ( $table ) {
             /** @var Blueprint $table */
-            $table->increments( 'post_id' );
+            $table->increments( 'comment_id' );
+            $table->integer( 'post_id' );
             $table->integer( 'status' );
-            $table->string( 'title', 1024 );
-            $table->string( 'content', 1024 * 10 );
-            $table->timestamp( 'publishAt' );
+            $table->string( 'comment', 1024 * 10 );
             $table->timestamps();
         } );
     }
