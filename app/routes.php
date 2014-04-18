@@ -16,3 +16,5 @@ Route::pattern( 'id', '[0-9]+' );
 Route::get('/', 'PostController@listPost' );
 
 Route::get('/{id}', 'PostController@onGet' );
+
+Route::post('/{id}', 'PostController@onGet' );
