@@ -3,6 +3,13 @@
 @section('content')
 
 <div class="post col-md-12">
+    @if( $message )
+    <div class="alert alert-warning alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Warning</strong><br/>
+        {{ $message }}
+    </div>
+    @endif
     <h1>{{$post['title']}}</h1>
     <span class="date">[{{ $post['publishAt'] }}] [
         @foreach( $tags as $tag )
@@ -24,7 +31,7 @@
     <div class="comments">
         {{ Form::open() }}
         <span class="date">Leave a New Comment Here!</span>
-        <input type="hidden" name="{{ $post_form_name }}[link][comments]" value="Cena.comment.0.1" />
+        <input type="hidden" name="Cena[comment][0][1][link][post]" value="{{$post_form_name}}" />
         <textarea name="Cena[comment][0][1][prop][comment]" rows="5" ></textarea>
         <button type="submit" class="btn btn-info">add comment</button>
         {{ Form::close() }}

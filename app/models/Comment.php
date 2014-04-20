@@ -19,7 +19,7 @@ class Comment extends Eloquent
     /**
      * @return BelongsTo
      */
-    public function comments()
+    public function post()
     {
         return $this->belongsTo( 'Post' );
     }

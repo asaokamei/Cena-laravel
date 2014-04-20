@@ -17,4 +17,6 @@ Route::get('/', 'PostController@listPost' );
 
 Route::get('/{id}', 'PostController@onGet' );
 
-Route::post('/{id}', 'PostController@onGet' );
+Route::post('/{id}', 'PostController@onAddComment' );
+
+Route::get('/{id}/edit', 'PostController@onEdit' );

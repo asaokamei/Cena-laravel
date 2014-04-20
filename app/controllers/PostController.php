@@ -2,6 +2,7 @@
 
 use Cena\Cena\CenaManager;
 use Cena\Cena\Factory as CenaFactory;
+use Cena\Cena\Process;
 use Cena\Eloquent\Factory;
 
 class PostController extends BaseController {
@@ -11,18 +12,39 @@ class PostController extends BaseController {
      */
     protected $cm;
 
+    /**
+     * @var Process
+     */
+    protected $process;
+
+    /**
+     * set up CenaManager and Process. 
+     */
     protected function setCena()
     {
         $ema       = Factory::getEmaEloquent();
         $this->cm  = CenaFactory::getCenaManager( $ema );
+        $this->process = CenaFactory::getProcess();
     }
 
+    /**
+     * lists the blog post. 
+     * 
+     * @return \Illuminate\View\View
+     */
     public function listPost()
     {
         $posts = PostView::all();
         return View::make('post-index')->with( 'posts', $posts );
     }
 
+    /**
+     * get the details of a blog post, $id. 
+     * read post, comments, and tags from db.
+     * 
+     * @param $id
+     * @return \Illuminate\View\View
+     */
     public function onGet($id)
     {
         $this->setCena();
@@ -30,6 +52,8 @@ class PostController extends BaseController {
         $post = Post::find($id);
         $tags = $post->tags;
         $comments = $post->comments;
+        
+        $message = Session::get( 'message', '' );
 
         $formP = CenaFactory::buildHtmlForms();
         $formP->setEntity($post);
@@ -38,7 +62,34 @@ class PostController extends BaseController {
             ->with( 'post', $formP )
             ->with( 'tags', $tags )
             ->with( 'comments', $comments )
-            ->with( 'post_form_name', $formP->getFormName() )
+            ->with( 'post_form_name', $formP->getCenaId() )
+            ->with( 'message', $message )
             ;
+    }
+
+    /**
+     * add an comment for a given post.
+     * 
+     * @param $id
+     * @return \Illuminate\Http\Response
+     */
+    public function onAddComment($id)
+    {
+        $this->setCena();
+        $post = Post::find($id);
+        
+        $this->process->setSource( $_POST );
+        $this->process->cleanExcept( 'comment' );
+        $url = url( "/{$id}" );
+        if( !$this->process->process() ) {
+            Session::flash( 'message', 'cannot add a comment' );
+            return Response::make( '', 302 )->header( 'Location', $url );
+        }
+        if( !$this->cm->fetch('comment.0.1')->comment ) {
+            Session::flash( 'message', 'please write something in the comment.' );
+            return Response::make( '', 302 )->header( 'Location', $url );
+        }
+        $this->cm->save();
+        return Response::make( '', 302 )->header( 'Location', $url );
     }
 }
