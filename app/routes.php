@@ -20,3 +20,9 @@ Route::get('/{id}', 'PostController@onGet' );
 Route::post('/{id}', 'PostController@onAddComment' );
 
 Route::get('/{id}/edit', 'PostController@onEdit' );
+
+Route::post('/{id}/edit', 'PostController@onPut' );
+
+Route::get('/{id}/create', 'PostController@onNew' );
+
+Route::post('/{id}/create', 'PostController@onCreate' );
