@@ -2,8 +2,9 @@
 
 @section('content')
 
+{{ Form::open() }}
+
 <div class="post col-md-12">
-    {{ Form::open() }}
 
     @if( $message )
     <div class="alert alert-danger alert-dismissable">
@@ -22,13 +23,6 @@
         <dt>Published At:</dt>
         <dd><input type="datetime-local" name="{{$post->getFormName()}}[prop][publishAt]" value="{{$post['publishAt']}}" style="width:20em;" /></dd>
 
-        <dt>Tags:</dt>
-        <dd>
-            @foreach( $post->get('tags') as $tag )
-            {{ $tag->tag }}
-            @endforeach
-        </dd>
-
         <dt>Content:</dt>
         <dd><textarea name="{{$post->getFormName()}}[prop][content]" rows="10">{{ $post['content'] }}</textarea></dd>
 
@@ -46,7 +40,7 @@
 
     </dl>
 
-    {{ link_to( "/{$post->getKey()}/edit", 'update post', array('class'=>'btn btn-primary') ) }}
+    <button type="submit" class="btn btn-primary">update post</button>
 </div>
 
 <div class="post col-md-8">
@@ -58,7 +52,9 @@
         {{ Form::textarea( $form->getFormName().'[prop][comment]', $comment['comment'], ['rows'=>4] ) }}
     </div>
     @endforeach
-    {{ link_to( "/{$post->getKey()}/edit", 'update post', array('class'=>'btn btn-primary') ) }}
-    {{ Form::close() }}
+    <button type="submit" class="btn btn-primary">update post</button>
 </div>
+
+{{ Form::close() }}
+
 @stop
