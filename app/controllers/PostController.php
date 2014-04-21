@@ -24,6 +24,9 @@ class PostController extends BaseController {
     {
         $ema       = Factory::getEmaEloquent();
         $this->cm  = CenaFactory::getCenaManager( $ema );
+        $this->cm->setClass( 'Post' );
+        $this->cm->setClass( 'Comment' );
+        $this->cm->setClass( 'Tag' );
         $this->process = CenaFactory::getProcess();
     }
 
@@ -76,8 +79,8 @@ class PostController extends BaseController {
     public function onAddComment($id)
     {
         $this->setCena();
-        $post = Post::find($id);
-        
+        $this->cm->getEntity( 'post', $id );
+
         $this->process->setSource( $_POST );
         $this->process->cleanExcept( 'comment' );
         $url = url( "/{$id}" );
