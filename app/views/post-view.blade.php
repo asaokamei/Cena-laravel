@@ -4,25 +4,26 @@
 
 <div class="post col-md-12">
     @if( $message )
-    <div class="alert alert-warning alert-dismissable">
+    <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Warning</strong><br/>
+        <strong>Error:</strong><br/>
         {{ $message }}
     </div>
     @endif
     <h1>{{$post['title']}}</h1>
     <span class="date">[{{ $post['publishAt'] }}] [
-        @foreach( $tags as $tag )
+        @foreach( $post->get('tags') as $tag )
         {{ $tag->tag }}
         @endforeach
     ]</span>
     <div class="content">{{ $post['content'] }}</div>
 
+    {{ link_to( "/{$post->getKey()}/edit", 'edit post', array('class'=>'btn btn-primary') ) }}
 </div>
 
 <div class="post col-md-8">
     <h2>Comments</h2>
-    @foreach( $comments as $comment )
+    @foreach( $post->get('comments') as $comment )
     <div class="comments">
         <span class="date">{{{$comment['created_at']}}}</span>
         {{{$comment['comment']}}}
@@ -31,7 +32,7 @@
     <div class="comments">
         {{ Form::open() }}
         <span class="date">Leave a New Comment Here!</span>
-        <input type="hidden" name="Cena[comment][0][1][link][post]" value="{{$post_form_name}}" />
+        <input type="hidden" name="Cena[comment][0][1][link][post]" value="{{ $post->getCenaId() }}" />
         <textarea name="Cena[comment][0][1][prop][comment]" rows="5" ></textarea>
         <button type="submit" class="btn btn-info">add comment</button>
         {{ Form::close() }}

@@ -52,10 +52,7 @@ class PostController extends BaseController {
     {
         $this->setCena();
 
-        $post = Post::find($id);
-        $tags = $post->tags;
-        $comments = $post->comments;
-        
+        $post = $this->cm->getEntity( 'post', $id );
         $message = Session::get( 'message', '' );
 
         $formP = CenaFactory::buildHtmlForms();
@@ -63,9 +60,6 @@ class PostController extends BaseController {
         $formP->getFormName();
         return View::make('post-view')
             ->with( 'post', $formP )
-            ->with( 'tags', $tags )
-            ->with( 'comments', $comments )
-            ->with( 'post_form_name', $formP->getCenaId() )
             ->with( 'message', $message )
             ;
     }
@@ -93,6 +87,6 @@ class PostController extends BaseController {
             return Response::make( '', 302 )->header( 'Location', $url );
         }
         $this->cm->save();
-        return Response::make( '', 302 )->header( 'Location', $url );
+        return Response::make( 'saved a new comment', 302 )->header( 'Location', $url );
     }
 }
