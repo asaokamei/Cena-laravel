@@ -4,6 +4,7 @@ use Cena\Cena\CenaManager;
 use Cena\Cena\Factory as CenaFactory;
 use Cena\Cena\Process;
 use Cena\Eloquent\Factory;
+use Illuminate\Database\Eloquent\Collection;
 
 class PostController extends BaseController {
 
@@ -57,7 +58,6 @@ class PostController extends BaseController {
 
         $formP = CenaFactory::buildHtmlForms();
         $formP->setEntity($post);
-        $formP->getFormName();
         return View::make('post-view')
             ->with( 'post', $formP )
             ->with( 'message', $message )
@@ -88,5 +88,31 @@ class PostController extends BaseController {
         }
         $this->cm->save();
         return Response::make( 'saved a new comment', 302 )->header( 'Location', $url );
+    }
+
+    /**
+     * get the details of a blog post, $id.
+     * read post, comments, and tags from db.
+     *
+     * @param $id
+     * @return \Illuminate\View\View
+     */
+    public function onEdit($id)
+    {
+        $this->setCena();
+
+        /** @var Post $post */
+        $post = $this->cm->getEntity( 'post', $id );
+        $allTags = \Tag::all();
+        $message = Session::get( 'message', '' );
+
+        $formP = CenaFactory::buildHtmlForms();
+        $formP->setEntity($post);
+        return View::make('post-edit')
+            ->with( 'post', $formP )
+            ->with( 'tags', $allTags )
+            ->with( 'form', CenaFactory::buildHtmlForms() )
+            ->with( 'message', $message )
+            ;
     }
 }
