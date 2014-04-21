@@ -17,6 +17,19 @@ class Comment extends Eloquent
     protected $primaryKey = 'comment_id';
 
     /**
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = array())
+    {
+        $this->attributes = array(
+            'status' => self::STATUS_PUBLIC,
+            'comment' => '',
+            'post_id' => 0,
+        );
+        parent::__construct($attributes);
+    }
+
+    /**
      * @return BelongsTo
      */
     public function post()
