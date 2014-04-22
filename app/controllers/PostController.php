@@ -103,6 +103,7 @@ class PostController extends BaseController {
 
         /** @var Post $post */
         $post = $this->cm->getEntity( 'post', $id );
+        $post['publishAt'] = (new DateTime($post['publishAt']))->format("Y-m-d\TH:i:s");
         $allTags = \Tag::all();
         $message = Session::get( 'message', '' );
 

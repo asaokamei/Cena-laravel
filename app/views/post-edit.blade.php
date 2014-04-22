@@ -24,7 +24,7 @@
 
         <dt>Published At:</dt>
         <dd>
-            <input type="datetime-local" name="{{$post->getFormName()}}[prop][publishAt]" value="{{$post['publishAt']}}" style="width:20em;" />
+            <input type="datetime-local" name="{{$post->getFormName()}}[prop][publishAt]" value="{{ $post['publishAt'] }}" style="width:20em;" />
             {{ $post->getError('publishAt') }}
         </dd>
 
