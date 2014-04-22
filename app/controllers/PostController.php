@@ -115,4 +115,34 @@ class PostController extends BaseController {
             ->with( 'message', $message )
             ;
     }
+    
+    function onPut($id)
+    {
+        $this->setCena();
+
+        /** @var Post $post */
+        DB::beginTransaction();
+        
+        $post = $this->cm->getEntity( 'post', $id );
+        $post->tags()->detach();
+        $this->process->setSource( $_POST );
+        
+        if( $this->process->process() ) {
+            $this->cm->save();
+            DB::commit();
+            Session::flash( 'message', 'updated the post' );
+            return Response::make( '', 302 )->header( 'Location', url( "/{$id}" ) );
+        }
+        DB::rollBack();
+        
+        $formP = CenaFactory::buildHtmlForms();
+        $formP->setEntity($post);
+        $allTags = \Tag::all();
+        return View::make('post-edit')
+            ->with( 'post', $formP )
+            ->with( 'tags', $allTags )
+            ->with( 'form', CenaFactory::buildHtmlForms() )
+            ->with( 'message', 'update failed. please check the input!' )
+            ;
+    }
 }
