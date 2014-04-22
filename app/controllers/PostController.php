@@ -54,13 +54,13 @@ class PostController extends BaseController {
         $this->setCena();
 
         $post = $this->cm->getEntity( 'post', $id );
-        $message = Session::get( 'message', '' );
 
         $formP = CenaFactory::buildHtmlForms();
         $formP->setEntity($post);
         return View::make('post-view')
             ->with( 'post', $formP )
-            ->with( 'message', $message )
+            ->with( 'message',   Session::get( 'message', '' ) )
+            ->with( 'alertType', Session::get( 'alertType', 'alert-info' ) )
             ;
     }
 
@@ -80,10 +80,12 @@ class PostController extends BaseController {
         $url = url( "/{$id}" );
         if( !$this->process->process() ) {
             Session::flash( 'message', 'cannot add a comment' );
+            Session::flash( 'alertType', 'alert-danger' );
             return Response::make( '', 302 )->header( 'Location', $url );
         }
         if( !$this->cm->fetch('comment.0.1')->comment ) {
             Session::flash( 'message', 'please write something in the comment.' );
+            Session::flash( 'alertType', 'alert-danger' );
             return Response::make( '', 302 )->header( 'Location', $url );
         }
         $this->cm->save();
@@ -105,7 +107,6 @@ class PostController extends BaseController {
         $post = $this->cm->getEntity( 'post', $id );
         $post['publishAt'] = (new DateTime($post['publishAt']))->format("Y-m-d\TH:i:s");
         $allTags = \Tag::all();
-        $message = Session::get( 'message', '' );
 
         $formP = CenaFactory::buildHtmlForms();
         $formP->setEntity($post);
@@ -113,7 +114,8 @@ class PostController extends BaseController {
             ->with( 'post', $formP )
             ->with( 'tags', $allTags )
             ->with( 'form', CenaFactory::buildHtmlForms() )
-            ->with( 'message', $message )
+            ->with( 'message',   Session::get( 'message', '' ) )
+            ->with( 'alertType', Session::get( 'alertType', 'alert-info' ) )
             ;
     }
     
@@ -144,6 +146,7 @@ class PostController extends BaseController {
             ->with( 'tags', $allTags )
             ->with( 'form', CenaFactory::buildHtmlForms() )
             ->with( 'message', 'update failed. please check the input!' )
+            ->with( 'alertType', 'alert-danger' )
             ;
     }
 }

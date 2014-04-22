@@ -7,9 +7,8 @@
 <div class="post col-md-12">
 
     @if( $message )
-    <div class="alert alert-danger alert-dismissable">
+    <div class="alert {{ isset($alertType)?$alertType:'alert-info' }} alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <strong>Error:</strong><br/>
         {{ $message }}
     </div>
     @endif
