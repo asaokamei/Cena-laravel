@@ -6,6 +6,8 @@
 
 <div class="post col-md-12">
 
+    <h1>Editing Post: #{{$post->getKey()}}</h1>
+    
     @if( $message )
     <div class="alert {{ isset($alertType)?$alertType:'alert-info' }} alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -13,7 +15,6 @@
     </div>
     @endif
 
-    <h1>Editing Post: #{{$post->getKey()}}</h1>
     <dl>
         <dt>Title:</dt>
         <dd>

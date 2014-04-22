@@ -3,15 +3,15 @@
 @section('content')
 
 <div class="post col-md-12">
-    
+
+    <h1>{{ $post['title'] }}</h1>
+
     @if( $message )
     <div class="alert {{ isset($alertType)?$alertType:'alert-info' }} alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         {{ nl2br( $message ) }}
     </div>    
     @endif
-    
-    <h1>{{ $post['title'] }}</h1>
     
     <span class="date">[{{ $post['publishAt'] }}] [
         @foreach( $post->get('tags') as $tag )
