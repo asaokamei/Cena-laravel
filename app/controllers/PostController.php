@@ -4,7 +4,6 @@ use Cena\Cena\CenaManager;
 use Cena\Cena\Factory as CenaFactory;
 use Cena\Cena\Process;
 use Cena\Eloquent\Factory;
-use Illuminate\Database\Eloquent\Collection;
 
 class PostController extends BaseController {
 
@@ -28,7 +27,10 @@ class PostController extends BaseController {
         $this->cm->setClass( 'Post' );
         $this->cm->setClass( 'Comment' );
         $this->cm->setClass( 'Tag' );
-        $this->process = CenaFactory::getProcess();
+        /**  $this->cm->setValidator( 'Post', new ValidatePost() );
+        $this->cm->setValidator( 'Comment', new ValidateComment() );
+        $this->cm->setValidator( 'Tag', new ValidateTag() );
+        **/ $this->process = CenaFactory::getProcess();
     }
 
     /**
