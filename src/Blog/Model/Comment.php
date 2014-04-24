@@ -1,8 +1,9 @@
 <?php
+namespace Blog\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Comment extends Eloquent
+class Comment extends \Eloquent
 {
     const STATUS_PUBLIC = 1;
     const STATUS_HIDE   = 9;
@@ -34,7 +35,7 @@ class Comment extends Eloquent
      */
     public function post()
     {
-        return $this->belongsTo( 'Post' );
+        return $this->belongsTo( 'Blog\Model\Post' );
     }
 
 }

@@ -1,8 +1,9 @@
 <?php
+namespace Blog\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Tag extends Eloquent
+class Tag extends \Eloquent
 {
     /**
      * The database table used by the model.
@@ -18,7 +19,7 @@ class Tag extends Eloquent
      */
     public function post()
     {
-        return $this->belongsToMany( 'Post' );
+        return $this->belongsToMany( 'Blog\Model\Post' );
     }
 
 }

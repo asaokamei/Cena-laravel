@@ -1,6 +1,7 @@
 <?php
+namespace Blog\Model;
 
-class PostView extends Eloquent
+class PostView extends \Eloquent
 {
     /**
      * The database table used by the model.

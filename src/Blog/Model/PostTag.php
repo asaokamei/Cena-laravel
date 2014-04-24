@@ -1,6 +1,7 @@
 <?php
+namespace Blog\Model;
 
-class PostTag extends Eloquent
+class PostTag extends \Eloquent
 {
     /**
      * The database table used by the model.

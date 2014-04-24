@@ -13,16 +13,16 @@
 
 Route::pattern( 'id', '[0-9]+' );
 
-Route::get('/', 'PostController@listPost' );
+Route::get('/', 'Blog\Controller\PostController@listPost' );
 
-Route::get('/{id}', 'PostController@onGet' );
+Route::get('/{id}', 'Blog\Controller\PostController@onGet' );
 
-Route::post('/{id}', 'PostController@onAddComment' );
+Route::post('/{id}', 'Blog\Controller\PostController@onAddComment' );
 
-Route::get('/{id}/edit', 'PostController@onEdit' );
+Route::get('/{id}/edit', 'Blog\Controller\PostController@onEdit' );
 
-Route::post('/{id}/edit', 'PostController@onPut' );
+Route::post('/{id}/edit', 'Blog\Controller\PostController@onPut' );
 
-Route::get('/{id}/create', 'PostController@onNew' );
+Route::get('/{id}/create', 'Blog\Controller\PostController@onNew' );
 
-Route::post('/{id}/create', 'PostController@onCreate' );
+Route::post('/{id}/create', 'Blog\Controller\PostController@onCreate' );

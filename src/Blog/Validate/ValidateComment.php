@@ -1,6 +1,9 @@
 <?php
+namespace Blog\Validate;
 
-class ValidateComment extends Cena\Cena\Validation\SimpleValidatorAbstract
+use Cena\Cena\Validation\SimpleValidatorAbstract;
+
+class ValidateComment extends SimpleValidatorAbstract
 {
 
     /**

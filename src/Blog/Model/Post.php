@@ -1,9 +1,10 @@
 <?php
+namespace Blog\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Post extends Eloquent
+class Post extends \Eloquent
 {
     const STATUS_DRAFT  = 1;
     const STATUS_PUBLIC = 2;
@@ -23,7 +24,7 @@ class Post extends Eloquent
      */
     public function comments()
     {
-        return $this->hasMany( 'Comment' );
+        return $this->hasMany( 'Blog\Model\Comment' );
     }
 
     /**
@@ -31,6 +32,6 @@ class Post extends Eloquent
      */
     public function tags()
     {
-        return $this->belongsToMany( 'Tag' );
+        return $this->belongsToMany( 'Blog\Model\Tag' );
     }
 }

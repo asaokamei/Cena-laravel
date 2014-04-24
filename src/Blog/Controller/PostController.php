@@ -1,11 +1,19 @@
 <?php
+namespace Blog\Controller;
 
+use Blog\Model\Post;
+use Blog\Model\PostView;
+use Blog\Model\Tag;
 use Cena\Cena\CenaManager;
 use Cena\Cena\Factory as CenaFactory;
 use Cena\Cena\Process;
 use Cena\Eloquent\Factory;
+use DB;
+use Response;
+use Session;
+use View;
 
-class PostController extends BaseController {
+class PostController extends \BaseController {
 
     /**
      * @var CenaManager
@@ -24,13 +32,15 @@ class PostController extends BaseController {
     {
         $ema       = Factory::getEmaEloquent();
         $this->cm  = CenaFactory::getCenaManager( $ema );
-        $this->cm->setClass( 'Post' );
-        $this->cm->setClass( 'Comment' );
-        $this->cm->setClass( 'Tag' );
-        /**  $this->cm->setValidator( 'Post', new ValidatePost() );
+        $this->cm->setClass( 'Blog\\Model\\Post' );
+        $this->cm->setClass( 'Blog\\Model\\Comment' );
+        $this->cm->setClass( 'Blog\\Model\\Tag' );
+        /*
+        $this->cm->setValidator( 'Post', new ValidatePost() );
         $this->cm->setValidator( 'Comment', new ValidateComment() );
         $this->cm->setValidator( 'Tag', new ValidateTag() );
-        **/ $this->process = CenaFactory::getProcess();
+        */
+        $this->process = CenaFactory::getProcess();
     }
 
     /**
@@ -107,8 +117,8 @@ class PostController extends BaseController {
 
         /** @var Post $post */
         $post = $this->cm->getEntity( 'post', $id );
-        $post['publishAt'] = (new DateTime($post['publishAt']))->format("Y-m-d\TH:i:s");
-        $allTags = \Tag::all();
+        $post['publishAt'] = (new \DateTime($post['publishAt']))->format("Y-m-d\TH:i:s");
+        $allTags = Tag::all();
 
         $formP = CenaFactory::buildHtmlForms();
         $formP->setEntity($post);
