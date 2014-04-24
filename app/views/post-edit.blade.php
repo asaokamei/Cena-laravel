@@ -19,19 +19,19 @@
         <dt>Title:</dt>
         <dd>
             <input type="text" name="{{$post->getFormName()}}[prop][title]" value="{{$post['title']}}" />
-            {{ $post->getError('title') }}
+            {{ $post->getErrorMsg('title') }}
         </dd>
 
         <dt>Published At:</dt>
         <dd>
             <input type="datetime-local" name="{{$post->getFormName()}}[prop][publishAt]" value="{{ $post['publishAt'] }}" style="width:20em;" />
-            {{ $post->getError('publishAt') }}
+            {{ $post->getErrorMsg('publishAt') }}
         </dd>
 
         <dt>Content:</dt>
         <dd>
             <textarea name="{{$post->getFormName()}}[prop][content]" rows="10">{{ $post['content'] }}</textarea>
-            {{ $post->getError('content') }}
+            {{ $post->getErrorMsg('content') }}
         </dd>
 
         <dt>Tags:</dt>
@@ -41,7 +41,7 @@
             <label>
                 {{ Form::checkbox( $post->getFormName().'[link][tags][]', $form->getCenaId(), $post->get('tags')->contains($tag->getKey()) ) }}
                 <input type="text" name="{{ $form->getFormName() }}[prop][tag]" value="{{ $form['tag'] }}" style="width: 6em" />
-                {{ $post->getError('tag') }}
+                {{ $post->getErrorMsg('tag') }}
             </label>
 
             @endforeach
@@ -59,7 +59,7 @@
     <div class="comments">
         <span class="date">{{{$comment['created_at']}}}</span>
         {{ Form::textarea( $form->getFormName().'[prop][comment]', $comment['comment'], ['rows'=>4] ) }}
-        {{ $post->getError('comment') }}
+        {{ $post->getErrorMsg('comment') }}
     </div>
     @endforeach
     <button type="submit" class="btn btn-primary">update post</button>

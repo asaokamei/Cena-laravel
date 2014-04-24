@@ -15,7 +15,7 @@ class ValidatePost extends SimpleValidatorAbstract
     {
         $this->required( 'title' );
         $this->required( 'content' );
-        $this->required( 'publishedAt' );
+        $this->required( 'publishAt' );
     }
 
     /**
