@@ -4,6 +4,9 @@ namespace Blog\Controller;
 use Blog\Model\Post;
 use Blog\Model\PostView;
 use Blog\Model\Tag;
+use Blog\Validate\ValidateComment;
+use Blog\Validate\ValidatePost;
+use Blog\Validate\ValidateTag;
 use Cena\Cena\CenaManager;
 use Cena\Cena\Factory as CenaFactory;
 use Cena\Cena\Process;
@@ -35,11 +38,9 @@ class PostController extends \BaseController {
         $this->cm->setClass( 'Blog\\Model\\Post' );
         $this->cm->setClass( 'Blog\\Model\\Comment' );
         $this->cm->setClass( 'Blog\\Model\\Tag' );
-        /*
-        $this->cm->setValidator( 'Post', new ValidatePost() );
-        $this->cm->setValidator( 'Comment', new ValidateComment() );
-        $this->cm->setValidator( 'Tag', new ValidateTag() );
-        */
+        $this->cm->setValidator( 'Blog\\Model\\Post', new ValidatePost() );
+        $this->cm->setValidator( 'Blog\\Model\\Comment', new ValidateComment() );
+        $this->cm->setValidator( 'Blog\\Model\\Tag', new ValidateTag() );
         $this->process = CenaFactory::getProcess();
     }
 
@@ -152,7 +153,7 @@ class PostController extends \BaseController {
         
         $formP = CenaFactory::buildHtmlForms();
         $formP->setEntity($post);
-        $allTags = \Tag::all();
+        $allTags = Tag::all();
         return View::make('post-edit')
             ->with( 'post', $formP )
             ->with( 'tags', $allTags )

@@ -18,7 +18,7 @@
 			"app/tests/TestCase.php"
 		],
         "psr-4": {
-            "Blog\\": "src/Blog"
+            "Blog\\": "src/Blog/"
         }
 	},
 	"scripts": {
