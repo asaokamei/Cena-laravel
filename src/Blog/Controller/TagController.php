@@ -39,15 +39,14 @@ class TagController extends \BaseController {
 	 */
 	public function store()
 	{
-        $input = Input::all();
         $validator = Validator::make(
-            $input,
+            Input::all(),
             array(
                 'tag' => 'required',
             )
         );
         if( $validator->passes() ) {
-            Tag::create( $input );
+            Tag::create( $validator->getData() );
             $url = url( "/tag/" );
             return Response::make( '', 302 )->header( 'Location', $url );
         }
@@ -92,15 +91,14 @@ class TagController extends \BaseController {
 	{
 		//
         $tag = Tag::find($id);
-        $input = Input::all();
         $validator = Validator::make(
-            $input,
+            Input::all(),
             array(
                 'tag' => 'required',
             )
         );
         if( $validator->passes() ) {
-            $tag->fill( $input );
+            $tag->fill( $validator->getData() );
             $tag->save();
             $url = url( "/tag/" );
             return Response::make( '', 302 )->header( 'Location', $url );
