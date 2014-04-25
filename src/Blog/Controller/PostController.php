@@ -131,7 +131,13 @@ class PostController extends \BaseController {
             ->with( 'alertType', Session::get( 'alertType', 'alert-info' ) )
             ;
     }
-    
+
+    /**
+     * updates post for $id. 
+     * 
+     * @param $id
+     * @return \Illuminate\Http\Response|\Illuminate\View\View
+     */
     function onPut($id)
     {
         $this->setCena();
