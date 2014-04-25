@@ -14,6 +14,8 @@ class Tag extends \Eloquent
 
     protected $primaryKey = 'tag_id';
 
+    protected $fillable = array( 'tag' );
+
     /**
      * @return BelongsToMany
      */

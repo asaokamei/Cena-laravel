@@ -26,3 +26,5 @@ Route::post('/{id}/edit', 'Blog\Controller\PostController@onPut' );
 Route::get('/{id}/create', 'Blog\Controller\PostController@onNew' );
 
 Route::post('/{id}/create', 'Blog\Controller\PostController@onCreate' );
+
+Route::resource( '/tag', 'Blog\Controller\TagController' );

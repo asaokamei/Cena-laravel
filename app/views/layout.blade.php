@@ -33,6 +33,7 @@
         <div class="navbar-collapse collapse pull-right">
             <ul class="nav navbar-nav">
                 <li class="active">{{ link_to( '/', 'Home' ) }}</li>
+                <li>{{ link_to('/tag', 'Tag' )}}</li>
                 <li><a href="edit.php">New Post</a></li>
                 <li><a href="about.php">About</a></li>
             </ul>
