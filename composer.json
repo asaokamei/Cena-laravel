@@ -8,6 +8,10 @@
         "cena/cena": "dev-master",
         "cena/eloquent": "dev-master"
 	},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*",
+        "mockery/mockery": "0.9.*"
+    },
 	"autoload": {
 		"classmap": [
 			"app/commands",
